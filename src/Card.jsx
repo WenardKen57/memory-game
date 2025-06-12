@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function Card({ setScore }) {
+function Card({ setScore, shuffleCards }) {
   const [pokemon, setPokemon] = useState(null);
   const [isActive, setIsActive] = useState(true);
 
@@ -27,8 +27,12 @@ function Card({ setScore }) {
 
   function handleOnClick() {
     if (isActive) {
+      shuffleCards();
       setScore((prevScore) => prevScore + 1)
       setIsActive(false);
+    } else {
+      setScore(0);
+      setIsActive(true);
     }
   }
 
