@@ -11,6 +11,9 @@
 .navigationBar {
   background-color: aqua;
   height: 20vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .grid-container {
