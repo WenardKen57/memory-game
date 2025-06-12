@@ -31,7 +31,7 @@ function Card({ children }) {
       ) : (
         <h1>Loading</h1>
       )}
-      <p>{pokemon.species.name}</p>
+      <p>{pokemon?.name || "Unknown pokemon"}</p>
     </div>
   );
 }
