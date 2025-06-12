@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { Card } from "./Card";
 import "./style/grid-style.css";
 
@@ -19,8 +20,11 @@ export default function Grid() {
 
   return (
     <div className="grid-container">
-      {cards.map((card) => (
-        <Card>{card}</Card>
+      {cards.map((card, index) => (
+        <Fragment key={index}>
+
+          <Card>{card}</Card>
+        </Fragment>
       ))}
     </div>
   );
