@@ -3,29 +3,18 @@ import { Card } from "./Card";
 import "./style/grid-style.css";
 
 export default function Grid() {
-  const ROW = 3;
-  const COLUMN = 3;
+  function createGrid(row, column) {
+    const grid = [];
+    for (let x = 0; x < row; x++) {
+      for (let y = 0; y < column; y++) {
+        grid.push(<Card></Card>);
+      }
+    }
 
-  const cards = [
-    "Angel",
-    "Mark",
-    "Frain",
-    "Lewis",
-    "Frain",
-    "Lewis",
-    "Lewis",
-    "Frain",
-    "Lewis",
-  ];
+    return grid;
+  }
 
   return (
-    <div className="grid-container">
-      {cards.map((card, index) => (
-        <Fragment key={index}>
-
-          <Card>{card}</Card>
-        </Fragment>
-      ))}
-    </div>
+    <div className="grid-container">{createGrid(3, 3).map((card) => card)}</div>
   );
 }
