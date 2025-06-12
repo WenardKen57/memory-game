@@ -1,5 +1,7 @@
+import Grid from "./Grid";
+
 function App() {
-  return <h1>Hello</h1>;
+  return <Grid />;
 }
 
 export default App;

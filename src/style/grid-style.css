@@ -1,0 +1,10 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(calc(100vh / 2), 1fr));
+  gap: 1rem;
+}
+
+.grid-container > * {
+  border: 1px solid black;
+  height: 300px;
+}
