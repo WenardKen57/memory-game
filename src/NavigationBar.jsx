@@ -1,6 +1,5 @@
-export default function NavigationBar() {
+export default function NavigationBar({currentScore}) {
   const highScore = 100;
-  const currentScore = 0;
 
   return <div className="navigationBar">
     <h1>Memory game</h1>

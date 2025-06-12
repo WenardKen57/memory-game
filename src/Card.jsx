@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 
-function Card({ children }) {
+function Card({ setScore }) {
   const [pokemon, setPokemon] = useState(null);
+  const [isActive, setIsActive] = useState(true);
 
   useEffect(() => {
     const randomId = Math.floor(Math.random() * 1025) + 1;
@@ -22,10 +23,17 @@ function Card({ children }) {
     };
 
     fetchRandomPokemon();
-  }, []); // ✅ Runs once on mount
+  }, []);
+
+  function handleOnClick() {
+    if (isActive) {
+      setScore((prevScore) => prevScore + 1)
+      setIsActive(false);
+    }
+  }
 
   return (
-    <div>
+    <div onClick={handleOnClick}>
       {pokemon ? (
         <img src={pokemon.sprites.front_default} alt={pokemon.name} />
       ) : (
