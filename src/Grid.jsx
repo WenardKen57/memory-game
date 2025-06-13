@@ -49,7 +49,6 @@ export default function Grid({ setScore }) {
   if (collectionOfCards.length <= 0) {
     return <h1>Loading...</h1>;
   } else {
-    console.log(collectionOfCards);
     return (
       <div className="grid-container">
         {collectionOfCards.map((card, index) => {
