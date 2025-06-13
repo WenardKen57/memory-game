@@ -1,9 +1,9 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState, cloneElement } from "react";
 import { Card } from "./Card";
 import "./style/grid-style.css";
 
 export default function Grid({ setScore }) {
-  const [gridOfCards, setGridOfCards] = useState([]);
+  const [collectionOfCards, setCollectionOfCards] = useState([]);
 
   function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -14,32 +14,48 @@ export default function Grid({ setScore }) {
   }
 
   function createGrid(row, column) {
-    const grid = [];
+    const newCollection = [];
     for (let x = 0; x < row; x++) {
       for (let y = 0; y < column; y++) {
-        grid.push(<Card shuffleCards={shuffleCards} setScore={setScore} />);
+        newCollection.push(
+          <Card
+            key={`${x}-${y}`}
+            resetGrid={resetGrid}
+            shuffleCards={shuffleCards}
+            setScore={setScore}
+          />
+        );
       }
     }
 
-    return grid;
+    return newCollection;
+  }
+
+  function resetGrid() {
+    setCollectionOfCards((prevCards) => shuffle([...prevCards]));
   }
 
   useEffect(() => {
-    setGridOfCards(createGrid(3, 3));
+    setCollectionOfCards(createGrid(3, 3));
   }, []);
 
   function shuffleCards() {
     const parent = document.querySelector(".grid-container");
-    const children = Array.from(parent.children);
-    shuffle(children);
-    children.forEach((child) => parent.appendChild(child));
+    const divs = Array.from(parent.children);
+    shuffle(divs);
+    divs.forEach((div) => parent.appendChild(div));
   }
 
-  return (
-    <div className="grid-container">
-      {gridOfCards.map((card, index) => {
-        return <Fragment key={index}>{card}</Fragment>;
-      })}
-    </div>
-  );
+  if (collectionOfCards.length <= 0) {
+    return <h1>Loading...</h1>;
+  } else {
+    console.log(collectionOfCards);
+    return (
+      <div className="grid-container">
+        {collectionOfCards.map((card, index) => {
+          return <Fragment key={index}>{card}</Fragment>;
+        })}
+      </div>
+    );
+  }
 }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function Card({ setScore, shuffleCards }) {
+function Card({ setScore, shuffleCards, resetGrid}) {
   const [pokemon, setPokemon] = useState(null);
   const [isActive, setIsActive] = useState(true);
 
@@ -17,7 +17,6 @@ function Card({ setScore, shuffleCards }) {
         })
         .then((data) => {
           setPokemon(data);
-          console.log(data);
         })
         .catch((error) => console.log(error));
     };
@@ -27,13 +26,16 @@ function Card({ setScore, shuffleCards }) {
 
   function handleOnClick() {
     if (isActive) {
+      console.log(isActive)
       shuffleCards();
       setScore((prevScore) => prevScore + 1)
       setIsActive(false);
     } else {
+      console.log(isActive)
+      shuffleCards();
       setScore(0);
-      setIsActive(true);
-    }
+      resetGrid();
+    } 
   }
 
   return (
